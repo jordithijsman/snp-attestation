@@ -23,12 +23,12 @@ fn compute_expected_hash() ->  Result<[u8; 384 / 8], Whatever> {
     let snp_measure_args = SnpMeasurementArgs {
         vcpus: 1,
         vcpu_type: CpuType::EpycV4,
-        ovmf_file: PathBuf::from("/home/jordi/snp-release-2024-11-12/usr/local/share/qemu/OVMF.fd"),
+        ovmf_file: PathBuf::from(""),
         guest_features: sev::measurement::vmsa::GuestFeatures(0b1),
-        kernel_file: Some(PathBuf::from("/boot/config-6.8.0-48-generic")),
-        initrd_file: Some(PathBuf::from("/boot/initrd.img-6.8.0-48-generic")),
+        kernel_file: Some(PathBuf::from("/boot/vmlinuz-6.10.0-snp-guest-0c3836482481")),
+        initrd_file: Some(PathBuf::from("/boot/initrd.img-6.10.0-snp-guest-0c3836482481")),
         append: None,
-        ovmf_hash_str: None,
+        ovmf_hash_str: Some("d03c8ab09f9218b62b145ee5c2a30e9d6a6197140068a88b5560fce073974064acfd3116ccc6af260707ddc064b9b7c5"),
         vmm_type: Some(VMMType::QEMU),
     };
     let ld = snp_calc_launch_digest(snp_measure_args)
